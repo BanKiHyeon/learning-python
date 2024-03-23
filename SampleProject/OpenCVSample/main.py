@@ -65,8 +65,23 @@ def translation():
     cv2.destroyAllWindows()
 
 
+def revolve():
+    img = cv2.imread('cat1.jpg')
+    rows, cols, ch = img.shape
+    # 중심축 좌표
+    M = cv2.getRotationMatrix2D(((cols - 1) / 2.0, (rows - 1) / 2.0), 90, 1)
+
+    dst = cv2.warpAffine(img, M, (cols, rows))
+
+    cv2.imshow('img', img)
+    cv2.imshow('dst', dst)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
 if __name__ == '__main__':
     # conversion()
     # scale()
-    translation()
+    # translation()
+    revolve()
     pass
