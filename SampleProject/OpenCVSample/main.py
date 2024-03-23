@@ -79,9 +79,28 @@ def revolve():
     cv2.destroyAllWindows()
 
 
+def perspective():
+
+    img = cv2.imread('cat1.jpg')
+    rows, cols = img.shape[:2]
+    print(rows, cols)
+
+    #  원근 변환은 이미지의 원근을 변경하여 다른 각도나 시각에서 찍은 것처럼 보이도록 하는 작업
+    pts1 = np.float32([[150, 50], [400, 50], [60, 450], [310, 450]])
+    pts2 = np.float32([[50, 50], [rows - 50, 50], [50, cols - 50], [rows - 50, cols - 50]])
+    M = cv2.getPerspectiveTransform(pts1, pts2)
+    dst = cv2.warpPerspective(img, M, (cols, rows))
+
+    cv2.imshow("img", img)
+    cv2.imshow("dst", dst)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+
+
 if __name__ == '__main__':
     # conversion()
     # scale()
     # translation()
-    revolve()
+    # revolve()
+    perspective()
     pass
