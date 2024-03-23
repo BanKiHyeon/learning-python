@@ -32,7 +32,7 @@ def conversion():
 
 def scale():
     src = cv2.imread('img1.jpg')
-    
+
     height, width = src.shape[:2]
     res1 = cv2.resize(src, (int(1.2 * width), int(1.2 * height)), interpolation=cv2.INTER_CUBIC)
     res2 = cv2.resize(src, (int(0.6 * width), int(0.6 * height)), interpolation=cv2.INTER_CUBIC)
@@ -46,7 +46,27 @@ def scale():
     cv2.destroyAllWindows()
 
 
+def translation():
+    import numpy as np
+    import cv2
+
+    img = cv2.imread('cat1.jpg')
+    rows, cols, ch = img.shape
+
+    # x축, y축 , 이동할 거리?
+    M = np.float32([[1, 0, 300], [0, 1, 50]])
+
+    # 이미지 변환
+    dst = cv2.warpAffine(img, M, (cols, rows))
+
+    cv2.imshow('img1', img)
+    cv2.imshow('src', dst)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
 if __name__ == '__main__':
     # conversion()
-    scale()
+    # scale()
+    translation()
     pass
