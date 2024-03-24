@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def conversion():
@@ -80,7 +81,6 @@ def revolve():
 
 
 def perspective():
-
     img = cv2.imread('cat1.jpg')
     rows, cols = img.shape[:2]
     print(rows, cols)
@@ -97,10 +97,32 @@ def perspective():
     cv2.destroyAllWindows()
 
 
+def filtering():
+    img = cv2.imread('noise.jpg')
+
+    blur1 = cv2.blur(img, (5, 5))
+    blur2 = cv2.GaussianBlur(img, (5, 5), 1)
+    blur3 = cv2.medianBlur(img, 5)
+
+    # image display
+    plt.figure(figsize=(10, 5), dpi=100)
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.subplot(141), plt.imshow(img), plt.title("Original")
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(142), plt.imshow(blur1), plt.title("Mean Filtering")
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(143), plt.imshow(blur2), plt.title("Gauss Filtering")
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(144), plt.imshow(blur3), plt.title("Median Filtering")
+    plt.xticks([]), plt.yticks([])
+    plt.show()
+
+
 if __name__ == '__main__':
     # conversion()
     # scale()
     # translation()
     # revolve()
-    perspective()
+    # perspective()
+    filtering()
     pass
