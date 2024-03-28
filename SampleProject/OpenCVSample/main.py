@@ -130,6 +130,22 @@ def video():
     cv2.destroyAllWindows()
 
 
+def edge():
+    img = cv2.imread('luna.jpg')
+
+    lowThreshold = 1
+    max_lowThreshold = 80
+    canny = cv2.Canny(img, lowThreshold, max_lowThreshold)
+
+    plt.figure(figsize=(8, 5), dpi=100)
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.subplot(121), plt.imshow(img, cmap=plt.cm.gray), plt.title("Original")
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(122), plt.imshow(canny, cmap=plt.cm.gray), plt.title("Edge Detection")
+    plt.xticks([]), plt.yticks([])
+    plt.show()
+
+
 if __name__ == '__main__':
     # conversion()
     # scale()
@@ -137,5 +153,6 @@ if __name__ == '__main__':
     # revolve()
     # perspective()
     # filtering()
-    video()
+    # video()
+    edge()
     pass
