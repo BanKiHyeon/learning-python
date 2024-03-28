@@ -118,11 +118,24 @@ def filtering():
     plt.show()
 
 
+def video():
+    cap = cv2.VideoCapture(0)
+    while cap.isOpened():
+        ret, frame = cap.read()
+        cv2.imshow('capture', frame)
+        key = cv2.waitKey(1)
+        if key & 0x0ff == ord('q'):
+            break
+    cap.release()
+    cv2.destroyAllWindows()
+
+
 if __name__ == '__main__':
     # conversion()
     # scale()
     # translation()
     # revolve()
     # perspective()
-    filtering()
+    # filtering()
+    video()
     pass
